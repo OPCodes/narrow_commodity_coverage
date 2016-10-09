@@ -1,0 +1,260 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style>
+* {
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font: 12px/150% Arial, Verdana, "\5b8b\4f53";
+}
+
+a {
+    color: #666;
+    text-decoration: none;
+}
+
+ul li {
+    list-style: none;
+}
+
+.sl-wrap {
+    position: relative;
+    _zoom: 1;
+    line-height: 34px;
+    border-bottom: 1px solid #DDD;
+}
+
+.sl-key {
+    float: left;
+    width: 100px;
+    padding-left: 10px;
+}
+
+.sl-value {
+    margin-left: 110px;
+    padding-right: 130px;
+    padding-left: 10px;
+    overflow: hidden;
+    zoom: 1;
+}
+
+.sl-v-list {
+    overflow: hidden;
+    zoom: 1;
+    padding-top: 4px;
+}
+
+img {
+    border: none;
+}
+
+.sl-v-list ul {
+    float: left;
+    overflow: hidden;
+    zoom: 1;
+    position: relative;
+    height: 30px;
+}
+
+.sl-v-list li {
+    float: left;
+    _display: inline;
+    margin-right: 16px;
+    margin-bottom: 4px;
+    height: 26px;
+    line-height: 26px;
+}
+
+.sl-v-list li a {
+    float: left;
+    white-space: nowrap;
+    zoom: 1;
+    color: #005aa0;
+    text-decoration: none;
+}
+
+.crumbs-nav-item {
+    display: none;
+    float: left;
+    margin-right: 8px;
+    margin-top: 5px;
+}
+
+.crumbs-nav-item .selector-set {
+    float: left;
+    margin-right: 5px;
+}
+
+.selector-set .ss-item {
+    position: relative;
+    display: inline-block;
+    height: 22px;
+    line-height: 22px;
+    border: 1px solid #DDD;
+    font-size: 12px;
+    vertical-align: top;
+    margin: 0 5px 5px 0;
+    padding: 0 26px 0 4px;
+    cursor: pointer;
+}
+
+.selector-set .ss-item b {
+    font-weight: 400;
+}
+
+.selector-set .ss-item em {
+    color: #e4393c;
+}
+
+.selector-set .ss-item i {
+    display: block;
+    position: absolute;
+    width: 25px;
+    height: 22px;
+    right: 0;
+    top: 0;
+    background: url(http://misc.360buyimg.com/product/list/1.0.2/css/i/search.ele.png) no-repeat 7px -140px;
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none
+}
+</style>
+
+<body>
+    <div class="sl-wrap">
+        <div class="sl-key">
+            <span>价格：</span>
+        </div>
+        <div class="sl-value">
+            <div class="sl-v-list">
+                <ul class="J_valueList" myName="价格:">
+                    <li><a href="javascript:;">0-299</a></li>
+                    <li><a href="javascript:;">300-699</a></li>
+                    <li><a href="javascript:;">700-1099</a></li>
+                    <li><a href="javascript:;">1100-1999</a></li>
+                    <li><a href="javascript:;">2000-3599</a></li>
+                    <li><a href="javascript:;">3600-4299</a></li>
+                    <li><a href="javascript:;">4300以上</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sl-wrap">
+        <div class="sl-key">
+            <span>类别：</span>
+        </div>
+        <div class="sl-value">
+            <div class="sl-v-list">
+                <ul class="J_valueList" myName="类别:">
+                    <li><a href="javascript:;">文件夹</a></li>
+                    <li><a href="javascript:;">办公套装</a></li>
+                    <li><a href="javascript:;">文件筐</a></li>
+                    <li><a href="javascript:;">美工刀</a></li>
+                    <li><a href="javascript:;">三针一钉</a></li>
+                    <li><a href="javascript:;">风琴包</a></li>
+                    <li><a href="javascript:;">票夹</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="sl-wrap">
+        <div class="sl-key">
+            <span>品牌:</span>
+        </div>
+        <div class="sl-value">
+            <div class="sl-v-list">
+                <ul class="J_valueList" myName="品牌:">
+                    <li><a href="javascript:;">得力</a></li>
+                    <li><a href="javascript:;">齐心</a></li>
+                    <li><a href="javascript:;">优必利</a></li>
+                    <li><a href="javascript:;">三木</a></li>
+                    <li><a href="javascript:;">GBC</a></li>
+                    <li><a href="javascript:;">广博</a></li>
+                    <li><a href="javascript:;">利兰</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div id="box">
+        <div class="crumbs-nav-item"></div>
+        <div class="crumbs-nav-item"></div>
+        <div class="crumbs-nav-item"></div>
+    </div>
+    <script>
+        var aUl = document.getElementsByClassName("J_valueList");
+        var aDivs = document.getElementsByClassName("crumbs-nav-item");
+        var allI,oD,old = null;
+        
+        for( var i = 0; i < aUl.length; i++ ){
+            fn(aUl[i],i);
+        }
+
+        function fn(obj,n){
+            var allLis = obj.getElementsByTagName("li"); // 获取传入的ul下的所有li
+            var oD = document.getElementsByClassName("crumbs-nav-item")[n];  // 获取到crumbs-nav-item，用来判断它里有没有元素
+
+            for( var i = 0; i < allLis.length; i++ ){
+                allLis[i].index = i;
+                allLis[i].onclick = function (){
+
+                    // 创建一个div，准备插入到crumbs-nav-item中
+                    var oDiv = document.createElement("div");
+                    oDiv.setAttribute("class","selector-set");
+                    oDiv.innerHTML = '<div class="ss-item"><b>价格:</b><em>'+ this.firstElementChild.innerHTML +'</em><i></i></div>';
+
+                    if( !oD.innerHTML.trim() ){  // 当oD中是空的时候，把div直接插入到容器中
+                        oD.appendChild(oDiv);
+                    } else {
+                        // 如果oD不是空的时候，获取到crumbs-nav-item，以及它下边的em
+                        
+                        var oldDiv = oD.getElementsByClassName("selector-set")[0];
+                        var em = oldDiv.getElementsByTagName("em")[0];
+                        // 修改下面em中的innerHTML
+                        em.innerHTML = this.firstElementChild.innerHTML;
+                        // 用新的div替换原来的div
+                        oD.replaceChild(oDiv,oldDiv);
+                    }
+                    // 点击哪个li让哪个li隐藏
+                    this.style.display = "none";
+                    // 判断old不等于null时，让old显示
+                    if( old != null ) allLis[old].style.display = "block";
+                    old = this.index;  // 修改old值
+                    
+                    // 控制下面div的显示隐藏
+                    if( getComputedStyle(oD)["display"] === "none" ){
+                        oD.style.display = "block";
+                    }
+
+                    // 获取crumbs-nav-item下面所有i标签
+                    allI = oD.getElementsByTagName("i");
+                    ~function (n){
+                        var allI = aDivs[n].getElementsByTagName("i");
+                        var selecDiv = aDivs[n].getElementsByClassName("selector-set")[0];
+                        // 给i标签循环添加点击事件
+                        for( var i = 0; i < allI.length; i++ ){
+                            allI[i].onclick = function (){
+                                aDivs[n].removeChild(selecDiv);
+                                aDivs[n].style.display = 'none';
+                            }
+                        }
+                    }(n)
+                }
+            }
+        }
+
+    </script>
+</body>
+
+</html>
